@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Optional styles for better visibility */
+        #header-placeholder,
+        #footer-placeholder {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="header-placeholder">Loading header...</div>
+    </header>
+
+    <main>
+        <h1>Main Content Area</h1>
+        <p>This is where the main content of the page will go.</p>
+    </main>
+
+    <footer>
+        <div id="footer-placeholder">Loading footer...</div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        async function loadHTML(elementId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.text();
+                document.getElementById(elementId).innerHTML = data;
+            } catch (error) {
+                console.error('Error loading the HTML file:', error);
+
+                document.getElementById(elementId).innerHTML = '<p>Error loading content. Please try again later.</p>';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            loadHTML('header-placeholder', 'https://dhiva21.github.io/Banner/header.html');
+
+            loadHTML('footer-placeholder', 'https://dhiva21.github.io/Banner/header.html');
+        });
+    </script>
+</body>
+
+</html>
